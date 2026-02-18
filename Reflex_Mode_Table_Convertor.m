@@ -1,3 +1,4 @@
+clear all; close all; clc;
 ModeTable=readtable('Mode_Table.xlsx');
 ColumnName=ModeTable.Properties.VariableNames;
 
@@ -16,3 +17,9 @@ DampingRatio=str2double(ModeTable.DampingPercent(row1-1)); % percent
 for k=1:length(Modes)
     EigenVector(:,k)=str2double(ModeTable.UndampedFrequency(row2(k)+1:row2(k)+length(DOF)));
 end
+ModalTest.Modes=Modes;
+ModalTest.NF=NF;
+ModalTest.DOF=DOF;
+ModalTest.EigenVector=EigenVector;
+ModalTest.DampingRatio=DampingRatio;
+save('ModalTest.mat');
